@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
+import "./ButtonPageWithHook.css";
 
 const ButtonPage = () => {
   const useCounters = () => {
@@ -20,7 +21,7 @@ const ButtonPage = () => {
       <h2>This is the Button Page</h2>
       <button onClick={increment}>Increment</button>
       <button onClick={decrement}>Decrement</button>
-      <div>{count}</div>
+      <div className={count > 0 ? "positive" : "negative"}>{count}</div>
     </div>
   );
 };
