@@ -8,6 +8,8 @@ const Navbar = () => {
     { name: "Button", link: "/buttonhook" },
     { name: "Array", link: "/array" },
     { name: "Todo", link: "/todo" },
+    { name: "Fetch", link: "/fetch" },
+    { name: "Lifted", link: "/lifted" },
   ];
   return (
     // <nav className="navbar">

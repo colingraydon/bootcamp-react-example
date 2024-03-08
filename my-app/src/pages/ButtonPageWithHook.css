@@ -1,0 +1,9 @@
+.positive {
+  color: green;
+  padding: 6px;
+}
+
+.negative {
+  color: red;
+  padding: 6px;
+}
