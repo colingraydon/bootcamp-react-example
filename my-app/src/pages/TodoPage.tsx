@@ -1,5 +1,5 @@
-import { useState } from "react";
-import Navbar from "../components/Navbar";
+import React, { useState } from "react";
+import TodoItem from "../components/TodoItem";
 
 const TodoPage: React.FC = () => {
   const useTodo = () => {
@@ -10,50 +10,41 @@ const TodoPage: React.FC = () => {
     };
 
     const removeTodo = (index: number) => {
-      const newTodos = todos.filter((_, i) => i !== index);
-      setTodos(newTodos);
+      setTodos(todos.filter((_, i) => index !== i));
     };
 
     return { todos, addTodo, removeTodo };
   };
 
   const { todos, addTodo, removeTodo } = useTodo();
-  const [input, setInput] = useState<string>("");
 
+  const [input, setInput] = useState<string>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     addTodo(input);
-    setInput("");
   };
 
   return (
     <div>
-      <Navbar />
-      <h1>Todo Page</h1>
-      <div>
-        <h1>Todo List</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Add a new todo"
-            value={input}
-            onChange={handleChange}
-          />
-          <button type="submit">Add Todo</button>
-        </form>
-        <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>
-              {todo}
-              <button onClick={() => removeTodo(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <h1>Todo List</h1>
+      <p>add a todo!</p>
+      <form>
+        <input value={input} type="text" onChange={handleChange} />
+        <button type="button" onClick={handleSubmit}>
+          add todo
+        </button>
+      </form>
+      {todos.map((todo, index) => (
+        <TodoItem
+          key={index}
+          index={index}
+          title={todo}
+          handleComplete={removeTodo}
+        />
+      ))}
     </div>
   );
 };
